@@ -38,9 +38,17 @@
     mysqli_query($connection, $query);
   }
 
+  //need to:
+  //make chat
+  //send message
+  //retrieve both
+  //follow and unfollow
+  //login
+  //block?
+
   switch($_GET['type']){
 
-    case "add":
+    case "temp":
 
       break;
 

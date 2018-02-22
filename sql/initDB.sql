@@ -7,8 +7,11 @@ insert into Users (user, pw, email) Values ('whand', 'password', 'willishand@gma
 drop table if exists Follows;
 create table Follows (follower VARCHAR(20), leader VARCHAR(20), since TIMESTAMP, primary key(follower, leader));
 
-drop table if exists Chats;
-create table Chats (user VARCHAR(20), blurb TEXT, at TIMESTAMP, primary key (user, at));
+drop table if exists Posts;
+create table Chats (pid INT AUTO_INCREMENT, user VARCHAR(20), blurb TEXT, at TIMESTAMP, primary key (cid));
 
 drop table if exists Messages;
 create table Messages (sender VARCHAR(20), reciever VARCHAR(20), blurb TEXT, at TIMESTAMP, primary key (sender, reciever, at));
+
+drop table if exists Comments;
+create table Comments (cid INT AUTO_INCREMENT, user VARCHAR(20), refid INT, blurb TEXT, at TIMESTAMP, primary key (cid));
