@@ -15,3 +15,6 @@ create table Messages (sender VARCHAR(20), reciever VARCHAR(20), blurb TEXT, at 
 
 drop table if exists Comments;
 create table Comments (cid INT AUTO_INCREMENT, user VARCHAR(20), refid INT, blurb TEXT, at TIMESTAMP, primary key (cid));
+
+drop table if exists Likes;
+create table Likes (pid INT, user VARCHAR(20), primary key (pid, user));

@@ -44,11 +44,12 @@
   //retrieve both
   //follow and unfollow
   //login
+  //like a post
   //block?
 
   switch($_GET['type']){
 
-    case "temp":
+    case "login":
 
       break;
 

@@ -1,10 +1,10 @@
-DROP TABLE thumb;
-DROP TABLE dislike;
-DROP TABLE comment;
-DROP TABLE twitts;
-DROP TABLE follow;
-DROP TABLE message;
-DROP TABLE user;
+DROP TABLE if exists thumb;
+DROP TABLE if exists dislike;
+DROP TABLE if exists comment;
+DROP TABLE if exists twitts;
+DROP TABLE if exists follow;
+DROP TABLE if exists message;
+DROP TABLE if exists user;
 
 CREATE TABLE `user` (
  `uid` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,25 +86,3 @@ CREATE TABLE `dislike` (
  CONSTRAINT `dislike_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `twitts` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE,
  CONSTRAINT `dislike_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
