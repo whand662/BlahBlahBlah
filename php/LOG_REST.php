@@ -2,7 +2,7 @@
   $dbhost = 'localhost';
   $dbuser = 'weblog_interface';
   $dbpass = '1qaz2wsx3edc';
-  $dbname = 'web_log';
+  $dbname = 'class_project';
   $restkey = 'eatmoreveggies';
 
   $returnObj = new stdClass();
@@ -49,9 +49,21 @@
 
   switch($_GET['type']){
 
+
     case "login":
 
       break;
+
+    //find the post with the most likes
+    //find the person with the most followers
+    //count the number of posts containing keyword flu and display by location
+    //get all twits by a person
+    //input a year find person who twits most in that year
+    //find all senders of messages
+    //post a twits
+    //follow/unfollow
+    //adds comment to post
+    //user deletes a comment to a post
 
     default:
 
