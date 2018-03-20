@@ -1,0 +1,12 @@
+Queries to be implemented in PHP:
+
+    Find the post that has the most number of likes
+    Find the person who has the most number of followers
+    Count the number of posts that contains the keyword “flu”, display the location of the users who have made the posts as well (use “GROUP BY location”).
+    User input a person’s twitter name, find all the posts made by that person
+    User input a year, find the person who twits the most in that year
+    After log in, find all the senders of messages to the user
+    After log in, user posts a new twit
+    After log in, user follows/unfollows another user
+    After log in, user adds comment to a post
+    After log in, user deletes a particular comment to a post he/she has created 
