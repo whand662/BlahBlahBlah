@@ -27,12 +27,6 @@
   </head>
   <body>
     <h2>Querries</h2>
-    <p>Find all the posts made by all the users in descended order.</p>
-    <div>
-      <form action="Query.php" method="POST">
-        <input type="submit" name="submit">
-      </form>
-    </div>
   </body>
     <body>
       <p>1. Find the post that has the most number of likes.</p>
