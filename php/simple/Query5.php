@@ -30,8 +30,13 @@
     include('mysql_connection.php');
     include('functions.php');
     //hardcoded user id so that will display need to change this
-  //  $sql="SELECT uid, COUNT(tid) from twitts where post_time=\"".$_POST["post_time"]."\"";
- $sql="SELECT uid, count(tid) from twitts where post_time=\"".$_POST["post_time"]."\" AND tid = (select MAX(tid) AS MostTwitts from twitts)";
+    //  $sql="SELECT uid, COUNT(tid) from twitts where post_time=\"".$_POST["post_time"]."\"";
+    $year1 = $_POST["post_time"];
+    $year2 = year1 + 1;
+    $sql="SELECT uid, count(tid)
+          from twitts
+          where post_time >= '$year1-01-01' and post_time < '$year2-01-01'
+          AND tid = (select MAX(tid) AS MostTwitts from twitts)";
     $result = mysqli_query($connect, $sql);
     if($result)
     $posts=mysqli_fetch_assoc($result)["post_time"];
