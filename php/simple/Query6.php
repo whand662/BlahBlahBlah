@@ -1,57 +1,73 @@
+<?php
+  include("mysql_connection.php");
+?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-      <img src="logoUser.png"  class="center">
-      <h1 align="center">Welcome to EzTwitt</h1>
-
-    <style>
-      body{
-          background: url(background2.jpg);
-          background-size: cover;
-          margin: 0;
-      }
-      .center {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          width: 10%;
-       }
-
-      </style>
-
-
-    <?php
-
-      //make connection
-      $connect = mysqli_connect('localhost', 'root', '');
-
-      //select db
-      mysqli_select_db($connect, 'class_project');
-
-      if(mysqli_connect_errno()){
-        exit();
-      }
-      //fetch records
-      $sql="SELECT follower_id FROM follow GROUP BY following_id ORDER BY COUNT(*) DESC LIMIT 1";
-      $result = mysqli_query($connect, $sql);
-
-      if(mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){
-            echo "<p>Result: </p>";
-            // echo "<h></h>";
-            echo "<tr><td>".$row["follower_id"];
-
-        }
-
-      }else{
-        echo "No data.";
-      }
-
-      $connect -> close();
-      ?>
-  </head>
+      <head>
+          <meta charset="UTF-8">
+            <style>
+              body{
+                  background: url(background2.jpg);
+                  background-size: cover;
+                  margin: 0;
+              }
+              input{
+                  width: 70%;
+                  outline: none;
+                  padding: 10px 11px;
+                  border: 1px #aaa solid;
+                  font-size: 15px;
+                  background: #fff;
+                  display: block;
+                  margin: 20px auto;
+              }
+              #login{
+                  background:a2b9bc;
+                  color: #fff;
+                  border: none;
+              }
+              div{
+                  width: 30%;
+                  height: 400px;
+                  background: rgba(0,0,0,.2);
+                  box-shadow: 5px 4px 43px #000;
+                  position: absolute;
+                  top: 80px;
+                  left: 200px;
+              }
+              form{
+                  margin: 30px auto;
+                  text-align: center;
+              }
+              b{
+                  font-size: 30px;
+                  color: ##3e4444;
+              }
+              a{
+                  color: ##fff;
+              }
+              img{
+                  display: block;
+                  margin: -60px auto 0 auto;
+                  border: none;
+                  box-shadow: 5px 4px 43px #000;
+              }
 
 
 
+          </style>
+      </head>
+
+      <body>
+        <div>
+          <form action="loginQ6.php" method="POST" style="text-align:center;">
+            <img src="logoUser.png"  />
+            <b>Login</b>
+            <input type="text" placeholder="Username" id="username" name="username"  />
+            <input type="password" placeholder="Password" id="password" name="password"  />
+            <input type="submit" value="Login" name="submit">
+          </form>
+        </div>
+      </body>
+      
 </html>
