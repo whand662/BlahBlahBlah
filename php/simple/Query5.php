@@ -25,51 +25,32 @@
 
 
     <?php
-
     session_start();
     include('mysql_connection.php');
     include('functions.php');
     //hardcoded user id so that will display need to change this
     //  $sql="SELECT uid, COUNT(tid) from twitts where post_time=\"".$_POST["post_time"]."\"";
-    $year1 = $_POST["post_time"];
-    $year2 = year1 + 1;
-    $sql="SELECT uid, count(tid)
-          from twitts
-          where post_time >= '$year1-01-01' and post_time < '$year2-01-01'
-          AND tid = (select MAX(tid) AS MostTwitts from twitts)";
+    $year = $_POST["post_time"];
+    $sql = "SELECT username AS User, MAX(counted) AS Posts FROM (SELECT *, COUNT(*) AS counted FROM twitts NATURAL JOIN user WHERE YEAR(post_time) = '$year' GROUP BY uid) AS counts";
     $result = mysqli_query($connect, $sql);
+    $connect -> close();
     if($result)
-    $posts=mysqli_fetch_assoc($result)["post_time"];
-    //$uid=mysqli_fetch_assoc($result)["uid"];
-    //$_SESSION['uid'] = $uid;
+    $posts=mysqli_fetch_assoc($result);
     $_SESSION['post_time'] = $posts;
-    echo $posts;
-?>
-<?php
-    $posts = show_posts($_SESSION['uid']);
-  if (count($posts)){
-?>
+    ?>
+
     <table border='1' cellspacing='0' cellpadding='5' width='300'>
       <?php
           foreach ($posts as $key => $list){
               echo "<tr valign='top'>\n";
-              echo "<td>".$list['uid'] ."</td>\n";
+              echo "<td>".$list['User'] ."</td>\n";
             //  echo "<td>".$list['body'] ."<br/>\n";
-              echo "<small>".$list['post_time'] ."</small></td>\n";
+              echo "<small>".$list['Posts'] ."</small></td>\n";
               echo "</tr>\n";
             }
       ?>
     </table>
-    <?php
-  }else{
-      ?>
-      <p><b>There is no twits on that year!</b></p>
-      <?php
-  }
-$connect -> close();
-  ?>
+
   </head>
-
-
 
 </html>
