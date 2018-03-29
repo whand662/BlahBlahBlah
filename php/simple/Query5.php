@@ -35,7 +35,7 @@
     $result = mysqli_query($connect, $sql);
     $connect -> close();
     if($result)
-    $posts=mysqli_fetch_assoc($result);
+    $posts = mysqli_fetch_assoc($result);
     $_SESSION['post_time'] = $posts;
     ?>
 
