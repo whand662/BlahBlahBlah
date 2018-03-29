@@ -33,11 +33,9 @@
 
       if(mysqli_num_rows($result)>0){
         while($row = mysqli_fetch_assoc($result)){
-            echo "<h1 style=font-size:100%;>Result Q1</h1>";
-            // echo "<p></p>";
+            echo "<h1 style=font-size:100%;>The post that has the most number of likes is: </h1>";
             echo "<tr>Twitter id <td>".$row["tid"];
             echo "<td>: <td>".$row["Post"];
-            // echo "<td>,  <td>".$row["post_time"];
         }
 
       }else{

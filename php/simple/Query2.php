@@ -33,15 +33,14 @@
         exit();
       }
       //fetch records
-      $sql="SELECT follower_id FROM follow GROUP BY following_id ORDER BY COUNT(*) DESC LIMIT 1";
+      $sql="SELECT f.follower_id, u.username FROM follow f, user u where u.uid=f.follower_id  GROUP BY following_id ORDER BY COUNT(*) DESC LIMIT 1";
       $result = mysqli_query($connect, $sql);
 
       if(mysqli_num_rows($result)>0){
         while($row = mysqli_fetch_assoc($result)){
-            echo "<h1 style=font-size:100%;>Result Q2</h1>";
-            // echo "<h></h>";
-            echo "<tr><td>".$row["follower_id"];
-
+            echo "<h1 style=font-size:100%;>The user who has the most number of followers is:</h1>";
+            echo "<tr><td>".$row["username"];
+            //echo "<tr><td>".$row["follower_id"];
         }
 
       }else{

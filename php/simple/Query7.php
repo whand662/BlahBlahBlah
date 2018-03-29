@@ -1,7 +1,3 @@
-<?php
-  include("mysql_connection.php");
-  include("process.php");
-?>
 <!DOCTYPE html>
 <html>
       <head>
@@ -61,13 +57,13 @@
 
       <body>
         <div>
-          <form action="" method="POST" style="text-align:center;">
+          <form action="process.php" method="POST" style="text-align:center;">
             <img src="logoUser.png"  />
             <b>Login</b>
             <input type="text" placeholder="Username" id="username" name="username"  />
             <input type="password" placeholder="Password" id="password" name="password"  />
             <input type="submit" value="Login" name="submit">
-          <span><?php echo $error; ?></span>
+          </form>
         </div>
       </body>
 </html>

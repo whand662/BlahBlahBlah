@@ -1,7 +1,3 @@
-<?php
-  include("mysql_connection.php");
-
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,7 +26,7 @@
       ?>
   </head>
   <body>
-    <p>You are successfull logged in!!
+     <p>You are successfull logged in!!
     </p>
   </body>
 
