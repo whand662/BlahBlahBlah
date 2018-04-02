@@ -32,15 +32,10 @@
       }
       include('mysql_connection.php');
       include('functions.php');
-      //make connection
-      $connect = mysqli_connect('localhost', 'root', '');
-      //select db
-      mysqli_select_db($connect, 'class_project');
-      if(mysqli_connect_errno()){
-        exit();
-      }
-      $connect -> close();
+      $uid = $_GET['uid'];
       $posts = all_posts_with_comments();
+      $connect -> close();
+      //var_dump($posts);
       if (count($posts)){
       foreach ($posts as $key => $list){
           echo "<table border='1' cellspacing='0' cellpadding='5' width='500'>";
@@ -49,24 +44,35 @@
           echo "<td>".$list['body'] ."<br/>\n";
           echo "<small>".$list['post_time'] ."</small></td>\n";
           echo "</tr>\n";
-          foreach ($posts['comments'] as $key => $sublist){
+          echo "</table>";
+          $comments = $list['comments'];
+          echo "<p>Comments:</p>";
+          echo "<table border='1' cellspacing='0' cellpadding='5' width='500'>";
+          foreach ($comments as $key => $sublist){
             echo "<tr valign='top'>\n";
             echo "<td>".$sublist['uid'] ."</td>\n";
             echo "<td>".$sublist['body'] ."<br/>\n";
             echo "<small>".$sublist['comment_time'] ."</small></td>\n";
+            echo "<td>";
+            echo "  <form action=\"Query10helper.php\" method=\"POST\">";
+            echo "    <input type=\"hidden\" name=\"uid\" value=\"$uid\" />";
+            echo "    <input type=\"hidden\" name=\"cid\" value=\"".$sublist['cid']."\" />";
+            echo "    <input type=\"submit\" value=\"delete\">";
+            echo "  </form>";
+            echo "</td>";
             echo "</tr>\n";
           }
-          echo "<form action="Query9helper.php" method="POST">"
-          echo  "Enter a year: <input type="text" placeholder="Comment" id="comment" name="comment"/>"
-          echo  "Enter your userID: <input type="text" placeholder="ID" id="uid" name="uid"/>"
-          echo  "<input type="hidden" name="tid" value="$list['tid']" />"
-          echo  "<br></br>"
-          echo  "<input type="submit" name="submit">"
-          echo "</form>"
           echo "</table>";
+          echo "<form action=\"Query9helper.php\" method=\"POST\">";
+          echo  "Enter a comment: <input type=\"text\" placeholder=\"Comment\" id=\"comment\" name=\"comment\"/>";
+          echo  "<input type=\"hidden\" name=\"uid\" value=\"$uid\" />";
+          echo  "<input type=\"hidden\" name=\"tid\" value=\"".$list['tid']."\" />";
+          echo  "<br></br>";
+          echo  "<input type=\"submit\" name=\"submit\">";
+          echo "</form>";
       }
       }else{
-      echo <p><b>You havent posted anything yet!</b></p>;
+      echo "<p><b>You havent posted anything yet!</b></p>";
       }
     ?>
 

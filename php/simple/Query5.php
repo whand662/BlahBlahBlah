@@ -30,51 +30,32 @@
     include('mysql_connection.php');
     include('functions.php');
 
-    $year1 = $_POST["post_time"];
-    $year2 = year1 + 1;
-    $sql="SELECT uid, count(tid)
-        from twitts
-        where post_time >= '$year1-01-01' and post_time < '$year2-01-01'
-          AND tid = (select MAX(tid) AS MostTwitts from twitts)";
+    $year1 = $_POST["year"];
+    $year2 = $year1 + 1;
+    $sql="SELECT username, magnitude
+          FROM   (SELECT uid, COUNT(*) AS magnitude
+      		FROM twitts
+      		GROUP BY uid
+      		ORDER BY magnitude DESC) AS temp natural join user
+          WHERE  magnitude=(SELECT MAX(magnitude) FROM (SELECT uid, COUNT(*) AS magnitude
+                                                        FROM twitts
+                                                        GROUP BY uid
+                                                        ORDER BY magnitude DESC) AS temp2);
+";
+    $result = mysqli_query($connect, $sql);
+    $connect -> close();
+    if($result->num_rows == 1){
+      $top=mysqli_fetch_assoc($result);
+      echo "<p><b>".$top['username']." had the most posts in $year1 with ".$top['magnitude']."</b></p>";
+    }else if($result->num_rows > 1){
+      while($top = mysqli_fetch_assoc($result)){
+        echo "<p><b>".$top['username']." was tied for the most posts in $year1 with ".$top['magnitude']."</b></p>";
+      }
+    }else{
+      echo "<p><b>There are no twits from that year!</b></p>";
+    }
 
-          $result = mysqli_query($connect, $sql);
-     if($result)
-     $posts=mysqli_fetch_assoc($result)["post_time"];
-  //  $sql="SELECT uid, COUNT(tid) from twitts where post_time=\"".$_POST["post_time"]."\"";
- // $sql="SELECT uid, count(tid) from twitts where post_time=\"".$_POST["post_time"]."\" AND tid = (select MAX(tid) AS MostTwitts from twitts)";
- //    $result = mysqli_query($connect, $sql);
- //    if($result)
- //    $posts=mysqli_fetch_assoc($result)["post_time"];
- //    //$uid=mysqli_fetch_assoc($result)["uid"];
- //    //$_SESSION['uid'] = $uid;
-    $_SESSION['post_time'] = $posts;
-    echo $posts;
-?>
-<?php
-    $posts = show_posts($_SESSION['uid']);
-  if (count($posts)){
-?>
-    <table border='1' cellspacing='0' cellpadding='5' width='300'>
-      <?php
-          foreach ($posts as $key => $list){
-              echo "<tr valign='top'>\n";
-              echo "<td>".$list['uid'] ."</td>\n";
-            //  echo "<td>".$list['body'] ."<br/>\n";
-              echo "<small>".$list['post_time'] ."</small></td>\n";
-              echo "</tr>\n";
-            }
-      ?>
-    </table>
-    <?php
-  }else{
-      ?>
-      <p><b>There is no twits on that year!</b></p>
-      <?php
-  }
-$connect -> close();
   ?>
   </head>
-
-
 
 </html>

@@ -67,7 +67,7 @@
       <p>5. User input a year, find the person who twits the most in that year.</p>
       <div>
         <form action="Query5.php" method="POST">
-          Enter a year: <input type="text" placeholder="Year" id="post_time" name="year"  />
+          Enter a year: <input type="text" placeholder="Year" id="year" name="year"  />
               <br></br>
           <input type="submit" name="submit">
         </form>
@@ -100,14 +100,16 @@
     <body>
       <p>9. After log in, user adds comment to a post.</p>
       <div>
-        <form action="Query9.php" method="POST">
+        <form action="Login.php" method="POST">
+          <input type="hidden" name="target" value="Query9.php" />
           <input type="submit" name="submit">
         </form>
         </div>
     </body>
       <p>10. After log in, user deletes a particular comment to a post he/she has created.</p>
       <div>
-        <form action="Query10.php" method="POST">
+        <form action="Login.php" method="POST">
+          <input type="hidden" name="target" value="Query9.php" />
           <input type="submit" name="submit">
         </form>
       </div>
