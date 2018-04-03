@@ -1,11 +1,8 @@
-<?php
-  include("mysql_connection.php");
-?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-      <img src="logoUser.png"  class="center">
+      <a href="Page.php"><img src="logoUser.png"  class="center"></a>
       <h1 align="center">Welcome to EzTwitt</h1>
 
     <style>
@@ -22,26 +19,25 @@
        }
 
       </style>
-
+    </head>
 
     <?php
 
-    session_start();
     include('mysql_connection.php');
     include('functions.php');
 
     $year1 = $_POST["year"];
     $year2 = $year1 + 1;
+
     $sql="SELECT username, magnitude
-          FROM   (SELECT uid, COUNT(*) AS magnitude
-      		FROM twitts
-      		GROUP BY uid
-      		ORDER BY magnitude DESC) AS temp natural join user
+          FROM (SELECT uid, COUNT(*) AS magnitude
+      		      FROM twitts
+      		      GROUP BY uid) AS temp natural join user
           WHERE  magnitude=(SELECT MAX(magnitude) FROM (SELECT uid, COUNT(*) AS magnitude
                                                         FROM twitts
-                                                        GROUP BY uid
-                                                        ORDER BY magnitude DESC) AS temp2);
-";
+                                                        WHERE post_time BETWEEN '$year1-01-01 00:00:00' AND '$year2-01-01 00:00:00'
+                                                        GROUP BY uid) AS temp2);";
+
     $result = mysqli_query($connect, $sql);
     $connect -> close();
     if($result->num_rows == 1){
@@ -56,6 +52,5 @@
     }
 
   ?>
-  </head>
 
 </html>

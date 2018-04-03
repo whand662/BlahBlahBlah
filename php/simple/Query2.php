@@ -19,38 +19,35 @@
        }
 
       </style>
-
+    </head>
 
     <?php
 
-      //make connection
-      $connect = mysqli_connect('localhost', 'root', '');
+      include('mysql_connection.php');
 
-      //select db
-      mysqli_select_db($connect, 'class_project');
-
-      if(mysqli_connect_errno()){
-        exit();
-      }
       //fetch records
-      $sql="SELECT f.follower_id, u.username FROM follow f, user u where u.uid=f.follower_id  GROUP BY following_id ORDER BY COUNT(*) DESC LIMIT 1";
+      $sql="SELECT username, magnitude
+            FROM   (SELECT following_id as uid, COUNT(*) AS magnitude
+                                                          FROM follow
+                                                          GROUP BY following_id) AS temp natural join user
+            WHERE  magnitude=(SELECT MAX(magnitude) FROM (SELECT following_id as uid, COUNT(*) AS magnitude
+                                                          FROM follow
+                                                          GROUP BY following_id) AS temp2);";
+
       $result = mysqli_query($connect, $sql);
+      $connect -> close();
 
-      if(mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){
-            echo "<h1 style=font-size:100%;>The user who has the most number of followers is:</h1>";
-            echo "<tr><td>".$row["username"];
-            //echo "<tr><td>".$row["follower_id"];
+      if($result->num_rows == 1){
+        $top=mysqli_fetch_assoc($result);
+        echo "<p><b>".$top['username']." had the most followers with ".$top['magnitude']."</b></p>";
+      }else if($result->num_rows > 1){
+        while($top = mysqli_fetch_assoc($result)){
+          echo "<p><b>".$top['username']." was tied for the most followers with ".$top['magnitude']."</b></p>";
         }
-
       }else{
-        echo "No data.";
+        echo "<p><b>No one is following anyone!</b></p>";
       }
 
-      $connect -> close();
       ?>
-  </head>
-
-
 
 </html>
