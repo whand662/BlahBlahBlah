@@ -24,7 +24,7 @@
           $result=mysqli_fetch_assoc($query);
           $_SESSION["username"]=$username;
           $_SESSION["uid"]=$result["uid"];
-          //echo $_SESSION["uid"];
+
           //redirect to another page
           header("Location: index.php");
 
