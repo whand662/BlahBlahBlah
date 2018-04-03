@@ -1,9 +1,11 @@
 <?php
+//the file action.php is used in the follow and unfollow links. This file accepts two
+//GET parameters: one for the user ID and the other for follow or unfollow.
 session_start();
 include_once("mysql_connection.php");
 include_once("functions.php");
 
-$id = $_GET['uid'];
+$id = $_GET['id'];
 $do = $_GET['do'];
 
 switch ($do){
@@ -18,7 +20,7 @@ switch ($do){
     break;
 
 }
-$_SESSION['message'] = $msg;
+echo $msg;
 
-header("Location:indexQ8.php");
+header("Location:users.php");
 ?>

@@ -1,5 +1,6 @@
 
 <?php
+//The file ProcessLogin.php is used to process login for the Q8
   session_start();
   include("mysql_connection.php");
 
@@ -13,27 +14,20 @@
       $username=$_POST['username'];
       $password=$_POST['password'];
 
-      //to prevent mysql injection
-      $username = stripcslashes($username);
-      $password = stripcslashes($password);
-      $username = mysqli_real_escape_string($connect, $username);
-      $password = mysqli_real_escape_string($connect, $password);
-
-      //fetch info of registered user and fnds user match
+          //fetch info of registered user and fnds user match
       $query = mysqli_query($connect, "SELECT * FROM user WHERE username='$username' AND password='$password'")
                             or die("Failed to query db ".mysql_error());;
-        $rows= mysqli_fetch_array($query);
+        $rows= mysqli_num_rows($query);
+        if($rows == 1)
+          {
+            $result=mysqli_fetch_assoc($query);
+            $_SESSION["username"]=$username;
+            $_SESSION["uid"]=$result["uid"];
 
-        //check if user and password matches
-        if($rows['username']== $username && $rows['password']== $password){
-            //echo "<b>Welcome ".$rows['username'],"!!!</b>"," "," You are now logged in";
-        }else{
-         echo "<b>Username or Password doesn't match!</b>";
-          }
-          //redirect to another page
+          //redirect to another page, using user.php file to display a list of users
           header("Location: users.php");
-
-
+        }
+        echo "<b>Username or Password is invalid!</b>";
       // close connection
       mysqli_close($connect);
      }

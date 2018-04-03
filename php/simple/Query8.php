@@ -71,14 +71,7 @@
 
   </head>
 
-  <?php
 
-    //make connection
-    include("mysql_connection.php");
-
-
-    $connect -> close();
-    ?>
 
 
 </html>
