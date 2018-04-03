@@ -27,11 +27,11 @@
       //fetch records
       $sql="SELECT a.location, COUNT(b.body) AS KeywordFlu
                     FROM user a, twitts b
-                    WHERE a.uid=b.uid AND b.body LIKE '%flu%'
+                    WHERE a.uid=b.uid AND (b.body REGEXP '[ .!,?]flu[ .!,?]' OR b.body REGEXP '^flu[ .!,?]' OR b.body REGEXP '[ .!,?]flu$')
                     GROUP BY a.location";
       $result = mysqli_query($connect, $sql);
 
-      if(mysqli_num_rows($result)>0){
+      if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
           //  echo "<h1 style=font-size:100%;>Result Q3</h1>";
             echo "<p> </p>".$row["location"];

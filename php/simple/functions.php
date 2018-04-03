@@ -38,9 +38,6 @@
       $sql1 = "select uid, username from user order by uid";
       $result1 = mysqli_query($connect, $sql1);
 
-      echo $_SESSION["uid"];
-      echo $_SESSION["username"];
-
       while ($data = mysqli_fetch_object($result1)){
           // $users[] = $data->username;
           //   $users[] = $data->uid;
@@ -160,14 +157,15 @@ function showUsers($user_id=0){
 
 // Willis's fc fro q9
 function all_posts_with_comments(){
+    include("mysql_connection.php");
     $posts = array();
     $sql = "SELECT uid, tid, body, post_time FROM twitts ORDER BY post_time DESC";
     $result = mysqli_query($connect, $sql);
     while($data = mysqli_fetch_object($result)){
       $comments = array();
-      $sql = "SELECT cid, uid, tid, body, comment_time FROM comment ORDER BY comment_time DESC";
-      $result = mysqli_query($connect, $sql);
-      while($data2 = mysqli_fetch_object($result)){
+      $sql = "SELECT cid, uid, tid, body, comment_time FROM comment WHERE tid = '$data->tid' ORDER BY comment_time ASC";
+      $result2 = mysqli_query($connect, $sql);
+      while($data2 = mysqli_fetch_object($result2)){
             $comments[] = array(   'comment_time' => $data2->comment_time,
                                 'cid' => $data2->cid,
                                 'uid' => $data2->uid,
