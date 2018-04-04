@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
       <a href="Page.php"><img src="logoUser.png"  class="center"></a>
       <h1 align="center">Welcome to EzTwitt</h1>
-
     <style>
       body{
           background: url(background2.jpg);
@@ -17,7 +16,6 @@
           margin-right: auto;
           width: 10%;
        }
-
       </style>
     </head>
 
