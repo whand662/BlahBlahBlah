@@ -85,18 +85,6 @@
 
   }
 
-
-  function check_count($first, $second){
-    include("mysql_connection.php");
-    $sql = "select count(*) from follow
-            where following_id='$second' and follower_id='$first'";
-    $result = mysqli_query($connect, $sql);
-
-    $row = mysqli_fetch_row($result);
-    return $row[0];
-
-}
-
 //This function is to follow user
 function follow_user($me,$them){
   include("mysql_connection.php");
