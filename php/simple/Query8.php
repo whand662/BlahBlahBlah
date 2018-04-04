@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-
-
     <style>
       body{
           background: url(background2.jpg);
@@ -51,11 +49,7 @@
           border: none;
           box-shadow: 5px 4px 43px #000;
       }
-
-
-
       </style>
-
       <body>
         <div>
           <form action="processLogin.php" method="POST" style="text-align:center;">
@@ -67,11 +61,5 @@
           </form>
         </div>
       </body>
-
-
   </head>
-
-
-
-
 </html>
