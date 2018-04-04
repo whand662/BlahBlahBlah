@@ -1,6 +1,3 @@
-<?php
-  include("mysql_connection.php");
-?>
 <!DOCTYPE html>
 <html>
   <head>
