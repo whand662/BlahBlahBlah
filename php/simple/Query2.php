@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
       <img src="logoUser.png"  class="center">
       <h1 align="center">Welcome to EzTwitt</h1>
-
     <style>
       body{
           background: url(background2.jpg);
