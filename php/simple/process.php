@@ -3,14 +3,12 @@
   session_start();
   include("mysql_connection.php");
 
-  //variable to store error messages
-  $error = '';
   //check if the user and password are empty
   if(isset(($_POST['submit'])))
     {
     if(empty($_POST['username']) || empty($_POST['password']))
     {
-        $error ="Enter Username and Password";
+        echo "Enter both fields for Username and Password!";
     }else{
       //define user and password
       $username=$_POST['username'];
@@ -29,7 +27,7 @@
           header("Location: index.php");
 
         }else{
-          $error ="Username or Password is invalid" ;
+          echo "Username or Password are invalid. Please try again!!!" ;
         }
       // close connection
       mysqli_close($connect);
