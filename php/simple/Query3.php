@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
       <img src="logoUser.png"  class="center">
       <h1 align="center">Welcome to EzTwitt</h1>
-
     <style>
       body{
           background: url(background2.jpg);
@@ -17,9 +16,7 @@
           margin-right: auto;
           width: 10%;
        }
-
       </style>
-
 
     <?php
       //make connection with database
@@ -32,11 +29,10 @@
       $result = mysqli_query($connect, $sql);
 
       if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_assoc($result)){
-          //  echo "<h1 style=font-size:100%;>Result Q3</h1>";
-            echo "<p> </p>".$row["location"];
-            echo " - ", "<td> <td>".$row["KeywordFlu"];
-        }
+            while($row = mysqli_fetch_assoc($result)){
+                echo "<p> </p>".$row["location"];
+                echo " - ", "<td> <td>".$row["KeywordFlu"];
+            }
 
       }else{
         echo "No data.";
@@ -45,7 +41,4 @@
       $connect -> close();
       ?>
   </head>
-
-
-
 </html>
