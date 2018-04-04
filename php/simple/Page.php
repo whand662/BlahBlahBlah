@@ -1,12 +1,9 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
       <img src="logoUser.png"  class="center">
       <h1 align="center">Welcome to EzTwitt</h1>
-
     <style>
       body{
           background: url(background2.jpg);
@@ -19,16 +16,8 @@
           margin-right: auto;
           width: 10%;
        }
-
       </style>
-
-
-
   </head>
-  <body>
-    <h2>Querries</h2>
-
-  </body>
     <body>
       <p>1. Find the post that has the most number of likes.</p>
       <div>
