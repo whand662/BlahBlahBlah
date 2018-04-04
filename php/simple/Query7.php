@@ -49,9 +49,6 @@
                   border: none;
                   box-shadow: 5px 4px 43px #000;
               }
-
-
-
           </style>
       </head>
 
