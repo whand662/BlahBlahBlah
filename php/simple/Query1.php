@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
       <img src="logoUser.png"  class="center">
       <h1 align="center">Welcome to EzTwitt</h1>
-
     <style>
       body{
           background: url(background2.jpg);
@@ -17,10 +16,7 @@
           margin-right: auto;
           width: 10%;
        }
-
       </style>
-
-
     <?php
       //make connection with database
       require_once('mysql_connection.php');
@@ -37,15 +33,11 @@
             echo "<tr>Twitt id <td>".$row["tid"];
             echo "<td>: <td>".$row["Post"];
         }
-
       }else{
         echo "No data.";
       }
-
       $connect -> close();
       ?>
   </head>
-
-
 
 </html>
