@@ -21,22 +21,27 @@
       //make connection with database
       require_once('mysql_connection.php');
 
-      //fetch records
-      $sql="SELECT t.tid, b.body AS Post  FROM thumb t, twitts b
-            WHERE t.tid=b.tid GROUP BY tid ORDER BY COUNT(*) DESC LIMIT 1";
+      $sql="SELECT body, magnitude
+            FROM (SELECT tid, COUNT(*) AS magnitude
+                  FROM thumb
+                  GROUP BY tid) AS temp natural join twitts
+            WHERE  magnitude=(SELECT MAX(magnitude) FROM (SELECT tid, COUNT(*) AS magnitude
+                                                          FROM thumb
+                                                          GROUP BY tid) AS temp2);";
 
       $result = mysqli_query($connect, $sql);
-
-      if(mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){
-            echo "<h1 style=font-size:100%;>The post that has the most number of likes is: </h1>";
-            echo "<tr>Twitt id <td>".$row["tid"];
-            echo "<td>: <td>".$row["Post"];
+      $connect -> close();
+      if($result->num_rows == 1){
+        $top=mysqli_fetch_assoc($result);
+        echo "<p><b>\"".$top['body']."\" had the most likes with ".$top['magnitude']."</b></p>";
+      }else if($result->num_rows > 1){
+        while($top = mysqli_fetch_assoc($result)){
+          echo "<p><b>\"".$top['body']."\" was tied for the most likes with ".$top['magnitude']."</b></p>";
         }
       }else{
-        echo "No data.";
+        echo "<p><b>There are no likes!</b></p>";
       }
-      $connect -> close();
+
       ?>
   </head>
 

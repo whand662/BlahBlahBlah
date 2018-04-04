@@ -31,17 +31,11 @@ if($dresult)
 
   $posts = show_posts($_SESSION['uid']);
   if (count($posts)){
-?>
-<?php
-    
-    echo "<p>  </p> ";
-    echo "<b>New Twitt:</b>";
-    
+
+    echo "<br></br> ";
+
   foreach ($posts as $key => $list){
-      echo "<tr valign='top'>\n";
-      echo "<td>".$list['body'] ."<br/>\n";
-      echo "<small>".$list['post_time'] ."</small></td>";
-      echo "</tr>\n";
+      echo "<p>".$list['body']."\t(<small>".$list['post_time']."</small>)</p>";
     }
 
 }else{
@@ -54,7 +48,7 @@ if(isset($_POST['commentSubmit'])){
 
   //query to post new twitt
   $sql = "insert into twitts values (null,'$uid', '$body',NOW())";
-  
+
   $result = mysqli_query($connect, $sql);
   if($result){
       header("Location: index.php");
