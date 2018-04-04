@@ -25,9 +25,9 @@
           $sql = "SELECT uid, username from user where username=\"".$_POST["username"]."\"";
           $result = mysqli_query($connect, $sql);
           if($result)
-          $uid=mysqli_fetch_assoc($result)["uid"];
-          $_SESSION['uid'] = $uid;
-          //echo $uid;
+              $uid=mysqli_fetch_assoc($result)["uid"];
+              $_SESSION['uid'] = $uid;
+         
     ?>
     <?php
           $posts = show_posts($_SESSION['uid']);
@@ -38,7 +38,6 @@
                 echo "<p>User ".$_POST["username"], " posted: ";
                 foreach ($posts as $key => $list){
                     echo "<tr valign='top'>\n";
-                  //  echo "<td>".$list['uid'] ."</td>\n";
                     echo "<td>".$_POST["username"] ."</td>\n";
                     echo "<td>".$list['body'] ."<br/>\n";
                     echo "<small>".$list['post_time'] ."</small></td>\n";
