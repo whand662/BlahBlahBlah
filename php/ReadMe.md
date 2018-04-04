@@ -1,4 +1,5 @@
 In xampp application under htdocs create a new folder and copy the files below:
+
               logoUser.png
               background2.jpg
               Page.php
