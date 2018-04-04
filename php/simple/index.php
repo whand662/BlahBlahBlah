@@ -53,7 +53,7 @@ if(isset($_POST['commentSubmit'])){
   $body = $_POST['combody'];
 
   //query to post new twitt
-  $sql = "insert INTO twitts VALUES (null,'$uid', '$body',NOW())";
+  $sql = "insert into twitts values (null,'$uid', '$body',NOW())";
   
   $result = mysqli_query($connect, $sql);
   if($result){
