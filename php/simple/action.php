@@ -21,6 +21,6 @@ switch ($do){
 
 }
 echo $msg;
-
+//redirect to users.php
 header("Location:users.php");
 ?>
