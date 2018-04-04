@@ -1,5 +1,7 @@
 <?php
 //The file functions.php has a list of functions used for the queries
+
+  //This function is to show user posts in descending order by post time
   function show_posts($userid){
       include("mysql_connection.php");
 
@@ -17,8 +19,8 @@
       return $posts;
 
   }
-// This function gives a list of all the users in the system.
 
+  //This function gives a list of all the users in the system.
   function show_users(){
       include("mysql_connection.php");
       $users = array();
@@ -30,8 +32,9 @@
       }
       return $users;
   }
-    //this fc is used for Q8 gives a list of all the users in the system and
-    //it's ordered by uid
+
+  //This fc is used for Q8 gives a list of all the users in the system and
+  //it's ordered by uid
   function showUsersUidOrder(){
       include("mysql_connection.php");
       $users = array();
@@ -39,17 +42,13 @@
       $result1 = mysqli_query($connect, $sql1);
 
       while ($data = mysqli_fetch_object($result1)){
-          // $users[] = $data->username;
-          //   $users[] = $data->uid;
-
-
           $users[$data->uid] = $data->username;
       }
       return $users;
   }
 
 
-//function show_messages() to show messages
+//The function show_messages() to show messages
   function show_messages($userid){
       include("mysql_connection.php");
       $messages = array();
@@ -67,7 +66,7 @@
     return $messages;
 
   }
-  //function that tells you who the current user is already following
+  //This function that tells you who the current user is already following
   function following($userid){
     include("mysql_connection.php");
     $users = array();
@@ -98,62 +97,23 @@
 
 }
 
+//This function is to follow user
 function follow_user($me,$them){
   include("mysql_connection.php");
-    //$count = check_count($me,$them);
         $sql = "insert into follow
                 values ($me,$them,NOW())";
-
         $result = mysqli_query($connect, $sql);
 }
 
-
+//This function is to unfollow user
 function unfollow_user($me,$them){
   include("mysql_connection.php");
-    //$count = check_count($me,$them)
         $sql = "delete from follow
                 where follower_id='$me' and following_id='$them'
                 limit 1";
 
         $result = mysqli_query($connect, $sql);
 }
-//Display a list of other users the user is following on the home page
-function showUsers($user_id=0){
- include("mysql_connection.php");
-    if ($user_id > 0){
-        $follow = array();
-        $fsql = "select follower_id from follow
-                where following_id='$user_id'";
-        $fresult = mysqli_query($connect, $fsql);
-
-        while($f = mysqli_fetch_object($fresult)){
-            array_push($follow, $f->follower_id);
-        }
-
-        if (count($follow)){
-            $id_string = implode(',', $follow);
-            $extra =  " and id in ($id_string)";
-
-        }else{
-            return array();
-        }
-
-    }
-
-    $users = array();
-    $sql = "select uid, username from user";
-             //$extra order by username";
-    // $sql = "select u.uid, u.username, f.follower_id from user u, follow f
-    //             where u.uid=f.follower_id";
-    $result = mysqli_query($connect, $sql);
-
-    while ($data = mysqli_fetch_object($result)){
-        $users[$data->uid] = $data->username;
-    }
-    return $users;
-
-}
-
 
 // Willis's fc fro q9
 function all_posts_with_comments(){
