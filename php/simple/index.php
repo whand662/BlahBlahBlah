@@ -59,6 +59,6 @@ if(isset($_POST['commentSubmit'])){
   if($result){
       header("Location: index.php");
   }
-
+  mysqli_close($connect);
 }
 ?>
