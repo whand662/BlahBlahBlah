@@ -1,4 +1,4 @@
-to use, copy the eztwitt directory into your htdocs directory so that xampp can find it.
+To use, copy the eztwitt directory into your htdocs directory so that xampp can find it.
 
 The main page is titled Page.php
 
