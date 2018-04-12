@@ -67,12 +67,15 @@ public class LoginActivity extends AppCompatActivity {
                     JsonObject temp = jsonObject.get("data").getAsJsonObject();
                     String user = temp.get("username").getAsString();
                     String email = temp.get("email").getAsString();
+                    int uid = temp.get("uid").getAsInt();
                     Log.d("Testing", user);
                     Log.d("Testing", email);
+                    Log.d("Testing", Integer.toString(uid));
                     SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("User", user);
                     editor.putString("Email", email);
+                    editor.putInt("Uid", uid);
                     String pw;
                     CheckBox al = (CheckBox) findViewById(R.id.login_rpw);
                     if(al.isChecked()){

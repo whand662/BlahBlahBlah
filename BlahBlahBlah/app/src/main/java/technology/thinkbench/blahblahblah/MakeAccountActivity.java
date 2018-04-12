@@ -49,10 +49,12 @@ public class MakeAccountActivity extends AppCompatActivity {
             JsonObject temp = jsonObject.get("data").getAsJsonObject();
             String user = temp.get("username").getAsString();
             String email = temp.get("email").getAsString();
+            int uid = temp.get("uid").getAsInt();
             SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("User", user);
             editor.putString("Email", email);
+            editor.putInt("Uid", uid);
             editor.putBoolean("AutoLog", false);
             editor.remove("Password");
             editor.apply();

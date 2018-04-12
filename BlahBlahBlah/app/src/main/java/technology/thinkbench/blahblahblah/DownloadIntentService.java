@@ -21,9 +21,6 @@ public class DownloadIntentService extends IntentService {
 
     public DownloadIntentService() {
         super(TAG);
-
-        // make one and re-use, in the case where more than one intent is queued
-        //parser = new IllustrativeRSSParser();
     }
 
     @Override

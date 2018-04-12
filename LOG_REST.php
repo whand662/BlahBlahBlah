@@ -148,60 +148,62 @@
       }
       break;
 
+    case "post":
+      $uid = mysqli_real_escape_string($connection, $_GET['uid']);
+      $body = mysqli_real_escape_string($connection, $_GET['body']);
+      $query = "INSERT INTO twitts VALUES (null,'$uid', '$body', NOW())";
+      $qry_result = mysqli_query($connection, $query);
+      if($qry_result){
+        $returnObj->retval = true;
+        $returnObj->message = "Posted";
+      }else{
+        $returnObj->retval = false;
+        $returnObj->message = "Could not post";
+      }
+      break;
+
+    case "comment":
+      $uid = mysqli_real_escape_string($connection, $_GET['uid']);
+      $tid = mysqli_real_escape_string($connection, $_GET['tid']);
+      $body = mysqli_real_escape_string($connection, $_GET['body']);
+      $query = "INSERT INTO comment (uid, tid, body, comment_time) VALUES ('$uid', '$tid', '$body', NOW())";
+      $qry_result = mysqli_query($connection, $query);
+      if($qry_result){
+        $returnObj->retval = true;
+        $returnObj->message = "Posted comment";
+      }else{
+        $returnObj->retval = false;
+        $returnObj->message = "Could not post comment";
+      }
+      break;
+
     case "feed":
-      $user = mysqli_real_escape_string($connection, $_GET['user']);
+      $uid = mysqli_real_escape_string($connection, $_GET['uid']);
       //watched
-      $query = "SELECT * FROM Watch, Films WHERE Watch.imdbID = Films.imdbID AND Watch.user = '$user'";
+      $posts = array();
+      $query = "SELECT username, uid, tid, body, post_time FROM twitts NATURAL JOIN user ORDER BY post_time DESC";
       $qry_result = mysqli_query($connection, $query);
-      if($qry_result == false){
-        $returnObj->retval = false;
-        $returnObj->message = "Failed to perform query1";
-        break;
-      }else{
-        $returnObj->rowCount = $qry_result->num_rows;
-        while($r = mysqli_fetch_assoc($qry_result)){
-          foreach($r as $key=>$value){
-            if(is_null($value) || $value == '')
-              unset($r[$key]);
-          }
-          $returnObj->data[] = $r;
+      while($data = mysqli_fetch_object($qry_result)){
+        $comments = array();
+        $query = "SELECT username, cid, uid, tid, body, comment_time FROM comment NATURAL JOIN user WHERE tid = '$data->tid' ORDER BY comment_time ASC";
+        $result2 = mysqli_query($connection, $query);
+        while($data2 = mysqli_fetch_object($result2)){
+              $comments[] = array(   'comment_time' => $data2->comment_time,
+                                    'cid' => $data2->cid,
+                                    'uid' => $data2->uid,
+                                    'username' => $data2->username,
+                                    'body' => $data2->body,
+                                    'tid' => $data2->tid);
         }
-      }
-      //Ratings
-      $query = "SELECT * FROM Ratings, Films WHERE Ratings.imdbID = Films.imdbID AND Ratings.user = '$user'";
-      $qry_result = mysqli_query($connection, $query);
-      if($qry_result == false){
-        $returnObj->retval = false;
-        $returnObj->message = "Failed to perform query2";
-        break;
-      }else{
-        $returnObj->rowCount = $returnObj->rowCount + $qry_result->num_rows;
-        while($r = mysqli_fetch_assoc($qry_result)){
-          foreach($r as $key=>$value){
-            if(is_null($value) || $value == '')
-              unset($r[$key]);
-          }
-          $returnObj->data2[] = $r;
-        }
-      }
-      //Achieved
-      $query = "SELECT * FROM Achieved, Achievements WHERE Achieved.aid = Achievements.aid AND Achieved.user = '$user'";
-      $qry_result = mysqli_query($connection, $query);
-      if($qry_result == false){
-        $returnObj->retval = false;
-        $returnObj->message = "Failed to perform query3";
-        break;
-      }else{
-        $returnObj->rowCount = $returnObj->rowCount + $qry_result->num_rows;
-        while($r = mysqli_fetch_assoc($qry_result)){
-          foreach($r as $key=>$value){
-            if(is_null($value) || $value == '')
-              unset($r[$key]);
-          }
-          $returnObj->data3[] = $r;
-        }
+        $posts[] = array(   'post_time' => $data->post_time,
+                            'uid' => $data->uid,
+                            'username' => $data->username,
+                            'body' => $data->body,
+                            'tid' => $data->tid,
+                            'comments' => $comments);
       }
       //clean up
+      $returnObj->data = $posts;
       $returnObj->retval = true;
       $returnObj->message = "Found " . $qry_result->num_rows . " results";
       break;

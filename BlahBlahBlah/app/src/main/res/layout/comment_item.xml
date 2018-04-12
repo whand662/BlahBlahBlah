@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/post_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="Author of Featured"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/post_timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Timestamp"
+        android:gravity="right"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/post_blurb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Blurb"
+        android:layout_below="@id/post_author"
+        android:textSize="14sp"/>
+
+</RelativeLayout>

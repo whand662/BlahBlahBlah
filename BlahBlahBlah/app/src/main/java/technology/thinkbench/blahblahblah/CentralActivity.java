@@ -1,6 +1,5 @@
 package technology.thinkbench.blahblahblah;
 
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 
 public class CentralActivity extends AppCompatActivity {
 
@@ -48,8 +46,8 @@ public class CentralActivity extends AppCompatActivity {
                 transaction2.replace(R.id.fragment_container, fragment2);
                 transaction2.commit();
                 return true;
-            case R.id.option_messages:
-                MessageFragment fragment3 = new MessageFragment();
+            case R.id.option_geo_search:
+                GeoSearchFragment fragment3 = new GeoSearchFragment();
                 FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
                 transaction3.replace(R.id.fragment_container, fragment3);
                 transaction3.commit();
