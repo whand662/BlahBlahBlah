@@ -40,14 +40,14 @@ public class CentralActivity extends AppCompatActivity {
                 transaction1.replace(R.id.fragment_container, fragment1);
                 transaction1.commit();
                 return true;
-            case R.id.option_follow:
-                FollowFragment fragment2 = new FollowFragment();
+            case R.id.option_query3:
+                Query3Fragment fragment2 = new Query3Fragment();
                 FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
                 transaction2.replace(R.id.fragment_container, fragment2);
                 transaction2.commit();
                 return true;
-            case R.id.option_geo_search:
-                GeoSearchFragment fragment3 = new GeoSearchFragment();
+            case R.id.option_query4:
+                Query4Fragment fragment3 = new Query4Fragment();
                 FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
                 transaction3.replace(R.id.fragment_container, fragment3);
                 transaction3.commit();
