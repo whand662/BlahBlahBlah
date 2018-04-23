@@ -1,6 +1,5 @@
 package technology.thinkbench.blahblahblah;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -122,14 +121,12 @@ public class FeedFragment extends android.support.v4.app.Fragment implements Loa
         View loadingIndicator = getView().findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
+        // Set empty state text to display
         mEmptyStateTextView.setText("No Results");
 
-        // Clear the adapter of previous earthquake data
+        // Clear the adapter
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
         if (posts != null && !posts.isEmpty()) {
             mAdapter.addAll(posts);
         }

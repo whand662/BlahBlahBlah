@@ -72,32 +72,46 @@ public class MakeAccountActivity extends AppCompatActivity {
         EditText temp = (EditText) findViewById(R.id.make_account_username);
         EditText pass1 = (EditText) findViewById(R.id.make_account_password);
         EditText pass2 = (EditText) findViewById(R.id.make_account_password2);
+        EditText place = (EditText) findViewById(R.id.make_account_city);
 
         EditText eml = (EditText) findViewById(R.id.make_account_email);
 
-        String user = temp.getText().toString();
-        String pass = pass1.getText().toString();
-        String passcheck = pass2.getText().toString();
-        String email = eml.getText().toString();
+        String user = temp.getText().toString().trim();
+        String pass = pass1.getText().toString().trim();
+        String passcheck = pass2.getText().toString().trim();
+        String email = eml.getText().toString().trim();
+        String city = place.getText().toString().trim();
 
         //check that username is valid, pass1 matchs pass2
         if(pass.length() < 1 || pass.length() > 255){
             Toast toast = Toast.makeText(getApplicationContext(), "Password must be at least 1 character", Toast.LENGTH_SHORT);
             toast.show();
+            pass1.setText("");
+            pass2.setText("");
+            pass1.requestFocus();
             return;
         }else if(pass.compareTo(passcheck) != 0){
             Toast toast = Toast.makeText(getApplicationContext(), "Passwords don't match!", Toast.LENGTH_SHORT);
             toast.show();
+            pass1.setText("");
+            pass2.setText("");
+            pass1.requestFocus();
             return;
         }else if(user.length() > 255 || user.length() == 0){
             Toast toast = Toast.makeText(getApplicationContext(), "Username can be 1 to 255 characters", Toast.LENGTH_SHORT);
             toast.show();
+            temp.requestFocus();
             return;
         }else if(email.length() > 255 || email.length() == 0){
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter an email", Toast.LENGTH_SHORT);
             toast.show();
+            eml.requestFocus();
+        }else if(city.length() > 255 || city.length() == 0){
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a city near you", Toast.LENGTH_SHORT);
+            toast.show();
+            place.requestFocus();
         }
-        String args = "?type=newuser&user=" + user + "&pass=" + pass + "&email=" + email;
+        String args = "?type=newuser&user=" + user + "&pass=" + pass + "&email=" + email + "&city=" + city;
         PendingIntent pendingResult = createPendingResult(LOGIN_REQUEST, new Intent(), 0);
         Intent intent = new Intent(getApplicationContext(), DownloadIntentService.class);
         intent.putExtra(DownloadIntentService.URL_EXTRA, args);

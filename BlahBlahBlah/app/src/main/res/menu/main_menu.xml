@@ -4,11 +4,11 @@
     <item android:id="@+id/option_feed"
         android:title="Home"
         app:showAsAction="ifRoom"/>
-    <item android:id="@+id/option_query3"
-        android:title="Query 3"
+    <item android:id="@+id/option_word_search"
+        android:title="Word Search"
         app:showAsAction="never"/>
-    <item android:id="@+id/option_query4"
-        android:title="Query 4"
+    <item android:id="@+id/option_user_search"
+        android:title="User Search"
         app:showAsAction="never"/>
 
 </menu>

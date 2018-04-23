@@ -65,6 +65,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Enter the city closest to you:"/>
+
+    <EditText
+        android:id="@+id/make_account_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textCapWords"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Your email will only be used if you forget your password. If you don't enter your email and forget your password we won't be able to help you!" />
 
     <Button

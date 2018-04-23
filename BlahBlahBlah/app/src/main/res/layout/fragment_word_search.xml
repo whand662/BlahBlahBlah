@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/prompt"
-            android:text="What's on your mind?"
+            android:text="Enter the word you want to search for:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"/>
@@ -31,19 +31,19 @@
             android:weightSum="100">
 
             <EditText
-                android:id="@+id/my_thought"
+                android:id="@+id/enter_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="80"
                 android:background="@drawable/edittextborder"/>
 
             <Button
-                android:id="@+id/submit_post"
+                android:id="@+id/search_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
                 android:background="@color/buttonColor"
-                android:text="Post"/>
+                android:text="Search"/>
 
         </LinearLayout>
 
@@ -68,17 +68,9 @@
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/post_section"
         android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
-
-    <ProgressBar
-        android:id="@+id/loading_indicator"
-        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_below="@id/post_section"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:textAppearance="?android:textAppearanceMedium"/>
 
 </RelativeLayout>
 
