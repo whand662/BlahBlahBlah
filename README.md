@@ -1,5 +1,5 @@
 # BlahBlahBlah
-A twitter-like class project, by Laura Luaciu and Willis Hand. 
+A twitter-like class project, by Laura Lucaciu and Willis Hand. 
 
 ## Phase 1
 Phase 1 is encapsulated in Phase1.jpg
