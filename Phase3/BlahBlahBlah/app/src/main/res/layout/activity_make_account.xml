@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-
+        android:textColor="#000000"
         android:text="Pick a username:"/>
 
     <EditText
@@ -28,7 +28,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="And a password:"/>
+        android:text="And a password:"
+        android:textColor="#000000"/>
 
     <EditText
         android:id="@+id/make_account_password"
@@ -40,7 +41,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reenter your password:"/>
+        android:text="Reenter your password:"
+        android:textColor="#000000"/>
 
     <EditText
         android:id="@+id/make_account_password2"
@@ -52,7 +54,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your email:"/>
+        android:text="Enter your email:"
+        android:textColor="#000000"/>
 
     <EditText
         android:id="@+id/make_account_email"
@@ -65,7 +68,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter the city closest to you:"/>
+        android:text="Enter the city closest to you:"
+        android:textColor="#000000"/>
 
     <EditText
         android:id="@+id/make_account_city"
@@ -78,6 +82,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:text="Your email will only be used if you forget your password. If you don't enter your email and forget your password we won't be able to help you!" />
 
     <Button

@@ -20,6 +20,7 @@
         <TextView
             android:id="@+id/prompt"
             android:text="Enter the user whose posts you want to see:"
+            android:textColor="#000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"/>
@@ -34,6 +35,8 @@
                 android:id="@+id/enter_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="80"
                 android:background="@drawable/edittextborder"/>
 
@@ -41,11 +44,16 @@
                 android:id="@+id/search_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_weight="20"
                 android:background="@color/buttonColor"
                 android:text="Search"/>
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <View
             android:layout_width="match_parent"

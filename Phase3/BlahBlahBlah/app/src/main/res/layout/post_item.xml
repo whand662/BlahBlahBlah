@@ -10,12 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textColor="#000000"
         tools:text="Author of Featured"
         android:textSize="18sp"/>
     <TextView
         android:id="@+id/post_timestamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         tools:text="Timestamp"
         android:gravity="right"
         android:textSize="18sp"/>
@@ -23,6 +25,7 @@
         android:id="@+id/post_blurb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         tools:text="Blurb"
         android:layout_below="@id/post_author"
         android:textSize="16sp"/>
