@@ -103,7 +103,7 @@ function unfollow_user($me,$them){
         $result = mysqli_query($connect, $sql);
 }
 
-// Willis's fc fro q9
+// this function is used for query 9
 function all_posts_with_comments(){
     include("mysql_connection.php");
     $posts = array();
